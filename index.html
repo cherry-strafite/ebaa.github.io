@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NEXORA — Beyond Digital</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* FUNDO */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(130, 50, 255, .18), transparent 25%),
+        radial-gradient(circle at 80% 30%, rgba(0, 255, 200, .12), transparent 25%),
+        radial-gradient(circle at 50% 90%, rgba(255, 0, 140, .10), transparent 30%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1100px, 92%);
+      margin-top: 18px;
+      padding: 14px 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      background: rgba(10, 10, 10, .65);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px;
+      backdrop-filter: blur(20px);
+
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: #9b5cff;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+    }
+
+    nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .nav-button {
+      padding: 10px 17px;
+      border-radius: 10px;
+      background: white;
+      color: black !important;
+      font-weight: bold;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px 70px;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 950px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      border-radius: 100px;
+
+      color: #bbb;
+      font-size: 12px;
+      margin-bottom: 25px;
+
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      background: #00ffc8;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #00ffc8;
+    }
+
+    h1 {
+      font-size: clamp(55px, 10vw, 130px);
+      line-height: .9;
+      letter-spacing: -7px;
+      font-weight: 900;
+    }
+
+    h1 .gradient {
+      background: linear-gradient(
+        90deg,
+        #fff,
+        #a56bff,
+        #00ffc8,
+        #fff
+      );
+      background-size: 300%;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: gradient 6s linear infinite;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 30px auto;
+      color: #999;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 24px;
+      border-radius: 13px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: .3s;
+    }
+
+    .primary {
+      color: black;
+      background: white;
+      box-shadow: 0 0 35px rgba(255,255,255,.15);
+    }
+
+    .primary:hover {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 0 45px rgba(255,255,255,.3);
+    }
+
+    .secondary {
+      color: white;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.04);
+    }
+
+    .secondary:hover {
+      background: rgba(255,255,255,.1);
+      transform: translateY(-4px);
+    }
+
+    /* MARQUEE */
+    .marquee {
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,.07);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      padding: 18px 0;
+      background: rgba(255,255,255,.02);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 20s linear infinite;
+    }
+
+    .marquee span {
+      margin: 0 25px;
+      color: #555;
+      font-weight: bold;
+      letter-spacing: 3px;
+      font-size: 13px;
+    }
+
+    /* SEÇÕES */
+    section {
+      padding: 120px 20px;
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .section-label {
+      color: #9b5cff;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .section-title {
+      font-size: clamp(38px, 6vw, 70px);
+      letter-spacing: -3px;
+      max-width: 700px;
+      margin-bottom: 50px;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      min-height: 280px;
+      padding: 30px;
+
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 24px;
+
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.015));
+
+      transition: .4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: #9b5cff;
+      filter: blur(90px);
+      opacity: .15;
+      top: -80px;
+      right: -80px;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(155,92,255,.5);
+      box-shadow: 0 20px 70px rgba(0,0,0,.4);
+    }
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(155,92,255,.12);
+      border: 1px solid rgba(155,92,255,.25);
+      font-size: 22px;
+      margin-bottom: 60px;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #777;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* NÚMEROS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 25px;
+      overflow: hidden;
+      background: rgba(255,255,255,.025);
+    }
+
+    .stat {
+      padding: 35px 20px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+
+    .stat:last-child {
+      border: none;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      color: #666;
+      font-size: 13px;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding: 130px 20px;
+      max-width: 1000px;
+    }
+
+    .cta-box {
+      position: relative;
+      padding: 80px 30px;
+      overflow: hidden;
+
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 35px;
+
+      background:
+        radial-gradient(circle at 50% 0%, rgba(155,92,255,.22), transparent 50%),
+        rgba(255,255,255,.03);
+    }
+
+    .cta h2 {
+      font-size: clamp(40px, 7vw, 75px);
+      letter-spacing: -4px;
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      color: #777;
+      margin-bottom: 30px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding: 30px 20px;
+      text-align: center;
+      color: #555;
+      font-size: 12px;
+    }
+
+    /* ANIMAÇÕES */
+    @keyframes gradient {
+      0% { background-position: 0%; }
+      100% { background-position: 300%; }
+    }
+
+    @keyframes marquee {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+      nav ul {
+        display: none;
+      }
+
+      h1 {
+        letter-spacing: -4px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: none;
+      }
+
+      .stat:nth-child(-n+2) {
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">NEXO<span>RA</span></div>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+    </ul>
+
+    <a class="nav-button" href="#contato">Começar</a>
+  </nav>
+
+  <!-- HERO -->
+  <main id="home">
+
+    <section class="hero">
+      <div class="hero-content">
+
+        <div class="badge">
+          <span class="dot"></span>
+          O futuro começa agora
+        </div>
+
+        <h1>
+          CREATE<br>
+          <span class="gradient">WITHOUT</span><br>
+          LIMITS.
+        </h1>
+
+        <p>
+          Uma experiência digital criada para quem não quer
+          seguir tendências — quer criar as próximas.
+        </p>
+
+        <div class="buttons">
+          <a href="#servicos" class="btn primary">
+            Explorar →
+          </a>
+
+          <a href="#sobre" class="btn secondary">
+            Descobrir mais
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>DESIGN</span>
+        <span>TECH</span>
+        <span>CREATIVITY</span>
+        <span>FUTURE</span>
+        <span>DIGITAL</span>
+        <span>DESIGN</span>
+        <span>TECH</span>
+        <span>CREATIVITY</span>
+        <span>FUTURE</span>
+        <span>DIGITAL</span>
+      </div>
+    </div>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+
+      <div class="section-label">01 — Sobre</div>
+
+      <h2 class="section-title">
+        Não criamos apenas coisas bonitas.
+        <span style="color:#666;">Criamos impacto.</span>
+      </h2>
+
+      <div class="stats">
+
+        <div class="stat">
+          <strong>99+</strong>
+          <span>Projetos criados</span>
+        </div>
+
+        <div class="stat">
+          <strong>24/7</strong>
+          <span>Ideias funcionando</span>
+        </div>
+
+        <div class="stat">
+          <strong>∞</strong>
+          <span>Possibilidades</span>
+        </div>
+
+        <div class="stat">
+          <strong>01</strong>
+          <span>Grande objetivo</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos">
+
+      <div class="section-label">02 — O que fazemos</div>
+
+      <h2 class="section-title">
+        Construído para o próximo nível.
+      </h2>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="icon">✦</div>
+
+          <h3>Design Futurista</h3>
+
+          <p>
+            Interfaces modernas, experiências imersivas
+            e identidades visuais que não passam despercebidas.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">⌁</div>
+
+          <h3>Tecnologia</h3>
+
+          <p>
+            Soluções digitais rápidas, inteligentes e
+            preparadas para acompanhar o crescimento.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">◉</div>
+
+          <h3>Experiência</h3>
+
+          <p>
+            Cada detalhe é pensado para transformar
+            visitantes em pessoas que realmente lembram da marca.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="contato">
+
+      <div class="cta-box">
+
+        <div class="section-label">
+          03 — Próximo passo
+        </div>
+
+        <h2>
+          LET'S MAKE<br>
+          <span class="gradient">SOMETHING.</span>
+        </h2>
+
+        <p>
+          Sua próxima ideia pode começar aqui.
+        </p>
+
+        <div class="buttons">
+          <a href="mailto:hello@nexora.com" class="btn primary">
+            Falar com a NEXORA →
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 NEXORA — Built for the future.
+  </footer>
+
+</body>
+</html>

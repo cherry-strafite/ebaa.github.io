@@ -1,0 +1,898 @@
+/* =========================
+   CONFIGURAÇÕES
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050505;
+    color: white;
+    overflow-x: hidden;
+}
+
+
+/* FUNDO */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(140, 60, 255, .16),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(0, 255, 200, .10),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(255, 0, 140, .10),
+            transparent 30%
+        );
+
+    pointer-events: none;
+    z-index: -2;
+}
+
+
+body::after {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 50px 50px;
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    position: fixed;
+
+    top: 18px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(1100px, 92%);
+
+    padding: 14px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(10,10,10,.65);
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    border-radius: 18px;
+
+    backdrop-filter: blur(20px);
+
+    z-index: 100;
+}
+
+
+.logo {
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 21px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+
+.logo span {
+    color: #9b5cff;
+}
+
+
+.menu {
+    display: flex;
+    gap: 28px;
+}
+
+
+.menu a {
+    color: #888;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: .3s;
+}
+
+
+.menu a:hover {
+    color: white;
+}
+
+
+.nav-button {
+    padding: 10px 17px;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: black;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 130px 20px 80px;
+}
+
+
+.hero-content {
+    max-width: 950px;
+}
+
+
+.badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 14px;
+
+    margin-bottom: 25px;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    border-radius: 100px;
+
+    background: rgba(255,255,255,.04);
+
+    color: #aaa;
+
+    font-size: 12px;
+}
+
+
+.badge span {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #00ffc8;
+
+    box-shadow: 0 0 15px #00ffc8;
+}
+
+
+.hero h1 {
+    font-size: clamp(55px, 10vw, 130px);
+
+    line-height: .88;
+
+    letter-spacing: -7px;
+
+    font-weight: 900;
+}
+
+
+.hero h1 strong {
+    display: block;
+
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #9b5cff,
+            #00ffc8,
+            #fff
+        );
+
+    background-size: 300%;
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    animation: gradient 6s linear infinite;
+}
+
+
+.hero p {
+    max-width: 600px;
+
+    margin: 30px auto;
+
+    color: #888;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+.buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+}
+
+
+.button {
+    display: inline-block;
+
+    padding: 15px 24px;
+
+    border-radius: 13px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+.primary {
+    background: white;
+
+    color: black;
+
+    box-shadow:
+        0 0 35px rgba(255,255,255,.12);
+}
+
+
+.primary:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 0 45px rgba(255,255,255,.3);
+}
+
+
+.secondary {
+    color: white;
+
+    background: rgba(255,255,255,.04);
+
+    border: 1px solid rgba(255,255,255,.15);
+}
+
+
+.secondary:hover {
+    background: rgba(255,255,255,.1);
+
+    transform: translateY(-4px);
+}
+
+
+/* =========================
+   NÚMEROS
+========================= */
+
+.numbers {
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    background: rgba(255,255,255,.025);
+}
+
+
+.numbers div {
+    padding: 35px 20px;
+
+    text-align: center;
+
+    border-right: 1px solid rgba(255,255,255,.08);
+}
+
+
+.numbers div:last-child {
+    border: none;
+}
+
+
+.numbers strong {
+    display: block;
+
+    font-size: 38px;
+
+    margin-bottom: 8px;
+}
+
+
+.numbers span {
+    color: #666;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    padding: 150px 0 80px;
+}
+
+
+.section-label {
+    color: #9b5cff;
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 18px;
+}
+
+
+.intro h2 {
+    max-width: 800px;
+
+    font-size: clamp(40px, 6vw, 75px);
+
+    letter-spacing: -4px;
+
+    line-height: 1;
+}
+
+
+.intro h2 span {
+    color: #555;
+}
+
+
+.description {
+    max-width: 600px;
+
+    margin-top: 30px;
+
+    color: #777;
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.home-cards {
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+
+    padding-bottom: 130px;
+}
+
+
+.card {
+    min-height: 280px;
+
+    padding: 30px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.015)
+        );
+
+    transition: .4s;
+}
+
+
+.card:hover {
+    transform: translateY(-10px);
+
+    border-color: rgba(155,92,255,.5);
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.4);
+}
+
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom: 60px;
+
+    border-radius: 14px;
+
+    background: rgba(155,92,255,.12);
+
+    border: 1px solid rgba(155,92,255,.25);
+
+    font-size: 22px;
+}
+
+
+.card h3 {
+    font-size: 22px;
+
+    margin-bottom: 12px;
+}
+
+
+.card p {
+    color: #777;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   PÁGINAS INTERNAS
+========================= */
+
+.page-hero {
+    min-height: 75vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    padding-top: 100px;
+}
+
+
+.page-hero h1 {
+    max-width: 900px;
+
+    font-size: clamp(50px, 8vw, 100px);
+
+    letter-spacing: -5px;
+
+    line-height: .95;
+}
+
+
+.page-hero h1 span {
+    color: #9b5cff;
+}
+
+
+.page-hero > p:last-child {
+    max-width: 600px;
+
+    margin-top: 30px;
+
+    color: #777;
+
+    line-height: 1.7;
+
+    font-size: 18px;
+}
+
+
+/* =========================
+   SOBRE
+========================= */
+
+.content-section {
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    padding: 80px 0 130px;
+}
+
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+}
+
+
+.about-grid h2 {
+    font-size: 50px;
+
+    letter-spacing: -3px;
+}
+
+
+.about-grid p {
+    color: #777;
+
+    line-height: 1.8;
+
+    margin-bottom: 25px;
+}
+
+
+.quote {
+    width: min(1000px, 90%);
+
+    margin: auto;
+
+    padding: 100px 0 160px;
+
+    text-align: center;
+}
+
+
+.quote h2 {
+    font-size: clamp(40px, 7vw, 80px);
+
+    letter-spacing: -4px;
+}
+
+
+/* =========================
+   PROJETOS
+========================= */
+
+.projects {
+    width: min(1100px, 92%);
+
+    margin: auto;
+
+    padding-bottom: 150px;
+
+    display: grid;
+
+    gap: 25px;
+}
+
+
+.project-card {
+    min-height: 400px;
+
+    padding: 40px;
+
+    border-radius: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    transition: .4s;
+}
+
+
+.project-card:hover {
+    transform: scale(.98);
+}
+
+
+.project-card p {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    opacity: .7;
+}
+
+
+.project-card h2 {
+    font-size: clamp(60px, 10vw, 130px);
+
+    letter-spacing: -7px;
+}
+
+
+.project-number {
+    font-size: 14px;
+
+    opacity: .6;
+}
+
+
+.purple {
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            #c56cff,
+            #47188a 40%,
+            #150522
+        );
+}
+
+
+.blue {
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            #00eaff,
+            #07527a 40%,
+            #03151e
+        );
+}
+
+
+.pink {
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            #ff4fc3,
+            #741a62 40%,
+            #22051c
+        );
+}
+
+
+/* =========================
+   CONTATO
+========================= */
+
+.contact-section {
+    width: min(700px, 92%);
+
+    margin: auto;
+
+    padding: 50px 0 150px;
+}
+
+
+#contactForm {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 25px;
+}
+
+
+#contactForm label {
+    color: #aaa;
+
+    font-size: 14px;
+}
+
+
+#contactForm input,
+#contactForm textarea {
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 17px;
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.04);
+
+    color: white;
+
+    outline: none;
+
+    font-family: inherit;
+
+    resize: vertical;
+}
+
+
+#contactForm input:focus,
+#contactForm textarea:focus {
+    border-color: #9b5cff;
+
+    box-shadow:
+        0 0 20px rgba(155,92,255,.1);
+}
+
+
+#contactForm button {
+    align-self: flex-start;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 30px;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(255,255,255,.07);
+
+    color: #555;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   ANIMAÇÕES
+========================= */
+
+@keyframes gradient {
+
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 300%;
+    }
+
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 800px) {
+
+    .menu {
+        display: none;
+    }
+
+
+    .navbar {
+        padding: 13px 15px;
+    }
+
+
+    .hero h1 {
+        letter-spacing: -4px;
+    }
+
+
+    .numbers {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .numbers div {
+        border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+
+    .numbers div:nth-child(2) {
+        border-right: none;
+    }
+
+
+    .home-cards {
+        grid-template-columns: 1fr;
+    }
+
+
+    .about-grid {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+
+    .about-grid h2 {
+        font-size: 40px;
+    }
+
+
+    .page-hero h1 {
+        letter-spacing: -3px;
+    }
+
+}
